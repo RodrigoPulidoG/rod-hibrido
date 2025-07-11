@@ -1,0 +1,28 @@
+.sidebar {
+  width: 200px;
+  background: #2c3e50;
+  padding: 1rem;
+  height: 100vh;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: #34495e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #42b983;
+}
+
+button.active {
+  background: #42b983;
+  font-weight: bold;
+}

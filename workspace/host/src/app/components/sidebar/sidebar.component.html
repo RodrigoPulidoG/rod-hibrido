@@ -1,0 +1,9 @@
+<div class="sidebar">
+  <button
+    *ngFor="let item of menuItems"
+    (click)="navigateTo(item.path)"
+    [class.active]="isActive(item.path)"
+  >
+    {{ item.label }}
+  </button>
+</div>
