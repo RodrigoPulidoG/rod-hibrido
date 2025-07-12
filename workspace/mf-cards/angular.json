@@ -3,9 +3,13 @@
 	"version": 1,
 	"newProjectRoot": "projects",
 	"projects": {
-		"host": {
+		"mf-cards": {
 			"projectType": "application",
-			"schematics": {},
+			"schematics": {
+				"@schematics/angular:component": {
+					"style": "scss"
+				}
+			},
 			"root": "",
 			"sourceRoot": "src",
 			"prefix": "app",
@@ -13,7 +17,7 @@
 				"build": {
 					"builder": "ngx-build-plus:browser",
 					"options": {
-						"outputPath": "dist/host",
+						"outputPath": "dist/mf-cards",
 						"index": "src/index.html",
 						"main": "src/main.ts",
 						"polyfills": [
@@ -29,8 +33,8 @@
 							"src/styles.css"
 						],
 						"scripts": [],
-						"commonChunk": false,
-						"extraWebpackConfig": "webpack.config.js"
+						"extraWebpackConfig": "webpack.config.js",
+						"commonChunk": false
 					},
 					"configurations": {
 						"production": {
@@ -62,26 +66,26 @@
 				},
 				"serve": {
 					"builder": "ngx-build-plus:dev-server",
+					"options": {
+						"port": 4201,
+						"publicHost": "http://localhost:4201",
+						"extraWebpackConfig": "webpack.config.js"
+					},
 					"configurations": {
 						"production": {
-							"browserTarget": "host:build:production",
+							"browserTarget": "mf-cards:build:production",
 							"extraWebpackConfig": "webpack.prod.config.js"
 						},
 						"development": {
-							"browserTarget": "host:build:development"
+							"browserTarget": "mf-cards:build:development"
 						}
 					},
-					"defaultConfiguration": "development",
-					"options": {
-						"port": 4200,
-						"publicHost": "http://localhost:4200",
-						"extraWebpackConfig": "webpack.config.js"
-					}
+					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "ngx-build-plus:extract-i18n",
 					"options": {
-						"browserTarget": "host:build",
+						"browserTarget": "mf-cards:build",
 						"extraWebpackConfig": "webpack.config.js"
 					}
 				}

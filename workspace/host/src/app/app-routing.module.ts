@@ -15,12 +15,10 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'cards', component: DashboardComponent },
-      // {
-      //   path: 'cards',
-      //   loadChildren: () => import('mf-cards/CardsModule').then(m => m.CardsModule)
-      // },
-      // Agrega más rutas de MFs aquí...
+      {
+        path: 'cards',
+        loadChildren: () => import('mfCards/CardsModule').then(m => m.CardsModule)
+      },
     ]
   },
   { path: '**', redirectTo: '' }
