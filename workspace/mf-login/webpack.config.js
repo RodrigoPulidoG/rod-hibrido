@@ -3,7 +3,6 @@ const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
 const rules = require('./webpack.rules');
 
-
 module.exports = {
   entry: './src/index.tsx',
   mode: 'development',
@@ -14,6 +13,11 @@ module.exports = {
       directory: path.join(__dirname, 'public'),
       serveIndex: false,
     },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+      'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+    }
   },
   output: {
     publicPath: 'auto',
@@ -30,7 +34,7 @@ module.exports = {
       name: 'mfLogin',
       filename: 'remoteEntry.js',
       exposes: {
-        './Login': './src/components/Login',
+        './bootstrap': './src/bootstrap.tsx',
       },
       shared: {
         react: { singleton: true, requiredVersion: '^19.1.0' },
@@ -39,6 +43,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      scriptLoading: 'module',
     }),
-  ],
+  ]
 };

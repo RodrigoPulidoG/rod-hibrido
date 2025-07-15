@@ -1,0 +1,13 @@
+<div class="react-container-wrapper">
+  <div #reactLoginContainer class="react-login-mount-point"></div>
+</div>
+
+<div *ngIf="showErrorModal" class="modal-overlay">
+  <div class="modal-content">
+    <h2 class="modal-title">Error de Inicio de Sesión</h2>
+    <p class="modal-message">{{ errorMessage }}</p>
+    <button (click)="closeErrorModal()" class="modal-button">
+      Cerrar
+    </button>
+  </div>
+</div>

@@ -10,11 +10,6 @@ export class LayoutComponent {
   showHeader = true;
 
   constructor(private router: Router) {
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.showHeader = !event.url.includes('/login');
-    //   }
-    // });
   }
 
 }

@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
 
   menuItems = [
-    { label: 'Dashboard', path: '/dashboard' },
-    { label: 'Cards', path: '/cards' },
+    { label: 'Dashboard', path: '/home/dashboard' },
+    { label: 'Cards', path: '/home/cards' },
   ];
 
   constructor(private router: Router) {}

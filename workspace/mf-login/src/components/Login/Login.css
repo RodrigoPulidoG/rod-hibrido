@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   background-color: transparent;
+  width: 100vw;
 }
 
 .card {
