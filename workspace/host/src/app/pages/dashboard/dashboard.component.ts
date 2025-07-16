@@ -9,9 +9,9 @@ import {
 import { ApodSessionService } from 'src/app/services/apod-session.service';
 import { Apod } from 'src/app/models/apod.model';
 import { ApodApiService } from 'src/app/services/apod-api.service';
-// import { register } from 'swiper/element/bundle';
+import { register } from 'swiper/element/bundle';
 
-// register();
+register();
 
 @Component({
   selector: 'app-dashboard',
@@ -28,16 +28,14 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private apodApi: ApodApiService,
     private session: ApodSessionService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.imageList = this.session.getImages();
   }
 
   ngAfterViewInit(): void {
-    if (this.imageList.length > 0) {
-      this.initializeSwiper();
-    }
+    this.initializeSwiper();
   }
 
   ngOnDestroy(): void {
@@ -54,7 +52,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
       grabCursor: true,
       loop: true,
       cubeEffect: {
-        shadow: true,
+        shadow: false,
         slideShadows: true,
         shadowOffset: 20,
         shadowScale: 0.8
@@ -72,15 +70,13 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private updateSwiper(): void {
-    const swiperEl = this.swiperContainer.nativeElement;
+    const swiperEl = this.swiperContainer?.nativeElement;
     if (swiperEl?.swiper) {
       swiperEl.swiper.update();
       const currentIndex = swiperEl.swiper.realIndex;
-      if (currentIndex >= this.imageList.length) {
+      if (this.imageList.length > 0 && currentIndex >= this.imageList.length) {
         swiperEl.swiper.slideTo(this.imageList.length - 1, 0);
       }
-    } else if (this.imageList.length > 0) {
-      this.initializeSwiper();
     }
   }
 
@@ -119,4 +115,5 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   trackByFn(index: number, item: Apod): string {
     return item.url;
   }
+
 }

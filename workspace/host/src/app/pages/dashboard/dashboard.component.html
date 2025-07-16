@@ -2,38 +2,60 @@
   <h2 class="crud-title">Creador galáctico 🌌</h2>
 
   <div class="main-panel">
-    <div class="controls">
+    <div class="controls-panel">
       <button (click)="generate()">Generar</button>
       <button [disabled]="!currentImage" (click)="save()">Guardar</button>
       <button [disabled]="!imageList.length" (click)="clearAll()">Eliminar todo</button>
     </div>
 
-    <div class="image-container">
+    <div class="image-panel">
       <ng-container *ngIf="isLoading">
-        <div class="loader-card">
+        <div class="loader-card dark-theme">
           <div class="spinner"></div>
           <div class="loading-text">Cargando maravillas cósmicas...</div>
         </div>
       </ng-container>
 
-      <img *ngIf="currentImage" [src]="currentImage.url" [alt]="currentImage.title" />
-
+      <div class="image-card" *ngIf="currentImage && !isLoading">
+        <img [src]="currentImage.url" [alt]="currentImage.title" />
+      </div>
     </div>
   </div>
 
-  <div *ngIf="imageList.length > 0" class="swiper-container-wrapper">
-    <!-- <swiper-container #swiperContainer init="false" navigation="true" pagination="true" effect="slide"
-      slides-per-view="1" class="custom-swiper">
-      <swiper-slide *ngFor="let img of imageList; let i = index; trackBy: trackByFn">
-        <div class="slide-card">
-          <img [src]="img.url" [alt]="img.title" />
-          <button class="remove-button" (click)="remove(i)">X</button>
-        </div>
-      </swiper-slide>
-    </swiper-container> -->
+  <div class="swiper-card">
+    <swiper-container
+      #swiperContainer
+      init="false"
+      effect="cube"
+      navigation="true"
+      pagination="true"
+      loop="true"
+      slides-per-view="1"
+      class="custom-swiper"
+    >
+      <ng-container *ngIf="imageList.length > 0">
+        <swiper-slide
+          *ngFor="let img of imageList; let i = index; trackBy: trackByFn"
+        >
+          <div class="swiper-slide-content">
+            <img [src]="img.url" [alt]="img.title" />
+            <button class="remove-button" (click)="remove(i)">X</button>
+          </div>
+        </swiper-slide>
+      </ng-container>
+    </swiper-container>
 
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div
+      class="swiper-button-prev"
+      [class.disabled]="imageList.length <= 1"
+    >
+      <span class="arrow-icon">◀</span>
+    </div>
+    <div
+      class="swiper-button-next"
+      [class.disabled]="imageList.length <= 1"
+    >
+      <span class="arrow-icon">▶</span>
+    </div>
   </div>
-
 </div>
