@@ -25,7 +25,12 @@
   margin-right: 8px;
 }
 
+span {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
 .exit-button {
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
   background-color: #34495e;
   color: white;
   border: none;

@@ -17,13 +17,13 @@ const routes: Routes = [
     component: LayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent },
+      { path: '', redirectTo: 'universo', pathMatch: 'full' },
       {
-        path: 'cards',
+        path: 'universo',
         loadChildren: () => import('mfCards/CardsModule').then(m => m.CardsModule)
       },
-      { path: '**', redirectTo: 'dashboard' }
+      { path: 'imagenes', component: DashboardComponent },
+      { path: '**', redirectTo: 'universo' }
     ]
   },
   { path: '**', redirectTo: 'login' }

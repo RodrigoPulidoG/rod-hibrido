@@ -1,4 +1,33 @@
-<div class="cards">
-  <h2>Microfrontend Cards</h2>
-  <p>Contenido cargado desde mf-cards.</p>
+<div class="form-card">
+  <h2 class="form-title">Explora el universo 🚀</h2>
+  <form class="query-form" (submit)="fetchImages($event)">
+    <label for="days">Días recientes:</label>
+    <input
+      id="days"
+      type="number"
+      [(ngModel)]="days"
+      name="days"
+      min="1"
+      max="30"
+      required
+      placeholder="Entre 1 y 30"
+    />
+    <button type="submit">Buscar imágenes</button>
+  </form>
+</div>
+
+<div class="cards-shell" *ngIf="searchStarted">
+  <div class="cards-list">
+    <div *ngIf="isLoading" class="loader-card">
+      <div class="spinner"></div>
+      <div class="loading-text">Cargando maravillas cósmicas...</div>
+    </div>
+
+    <div *ngIf="!isLoading && apods.length">
+      <app-apod-card
+        *ngFor="let apod of apods"
+        [data]="apod"
+      ></app-apod-card>
+    </div>
+  </div>
 </div>

@@ -1,1 +1,39 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <h2 class="crud-title">Creador galáctico 🌌</h2>
+
+  <div class="main-panel">
+    <div class="controls">
+      <button (click)="generate()">Generar</button>
+      <button [disabled]="!currentImage" (click)="save()">Guardar</button>
+      <button [disabled]="!imageList.length" (click)="clearAll()">Eliminar todo</button>
+    </div>
+
+    <div class="image-container">
+      <ng-container *ngIf="isLoading">
+        <div class="loader-card">
+          <div class="spinner"></div>
+          <div class="loading-text">Cargando maravillas cósmicas...</div>
+        </div>
+      </ng-container>
+
+      <img *ngIf="currentImage" [src]="currentImage.url" [alt]="currentImage.title" />
+
+    </div>
+  </div>
+
+  <div *ngIf="imageList.length > 0" class="swiper-container-wrapper">
+    <!-- <swiper-container #swiperContainer init="false" navigation="true" pagination="true" effect="slide"
+      slides-per-view="1" class="custom-swiper">
+      <swiper-slide *ngFor="let img of imageList; let i = index; trackBy: trackByFn">
+        <div class="slide-card">
+          <img [src]="img.url" [alt]="img.title" />
+          <button class="remove-button" (click)="remove(i)">X</button>
+        </div>
+      </swiper-slide>
+    </swiper-container> -->
+
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+
+</div>
