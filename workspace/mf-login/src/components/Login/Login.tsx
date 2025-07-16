@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import './Login.css';
+import { MOCK_PASSWORD, MOCK_USER } from '../../constants';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -23,13 +25,10 @@ const Login: React.FC = () => {
     event.preventDefault();
     setLoading(true);
     
-    const MOCK_USERNAME = 'testuser';
-    const MOCK_PASSWORD = 'password';
-    
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      if (username === MOCK_USERNAME && password === MOCK_PASSWORD) {
+      if (username === MOCK_USER && password === MOCK_PASSWORD) {
         const mockToken = 'mock-auth-token-12345';
         sessionStorage.setItem('authToken', mockToken);
 
