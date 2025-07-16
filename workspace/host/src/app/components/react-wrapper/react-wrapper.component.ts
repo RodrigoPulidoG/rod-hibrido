@@ -42,11 +42,6 @@ export class ReactWrapperComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    window.removeEventListener('loginSuccess', this.handleLoginSuccess as EventListener);
-    window.removeEventListener('loginFailure', this.handleLoginFailure as EventListener);
-  }
-
   private handleLoginSuccess = (event: CustomEvent) => {
     console.log('Login exitoso recibido en Angular:', event.detail);
     this.router.navigate(['/home/dashboard']);
@@ -61,5 +56,10 @@ export class ReactWrapperComponent implements AfterViewInit, OnDestroy {
   closeErrorModal(): void {
     this.showErrorModal = false;
     this.errorMessage = '';
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('loginSuccess', this.handleLoginSuccess as EventListener);
+    window.removeEventListener('loginFailure', this.handleLoginFailure as EventListener);
   }
 }

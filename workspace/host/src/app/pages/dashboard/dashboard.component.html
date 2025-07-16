@@ -39,7 +39,7 @@
         >
           <div class="swiper-slide-content">
             <img [src]="img.url" [alt]="img.title" />
-            <button class="remove-button" (click)="remove(i)">X</button>
+            <button class="remove-button" (click)="remove(i, $event)">X</button>
           </div>
         </swiper-slide>
       </ng-container>

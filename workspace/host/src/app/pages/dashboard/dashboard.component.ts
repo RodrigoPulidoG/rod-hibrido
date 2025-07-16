@@ -106,11 +106,13 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  remove(index: number): void {
-    this.imageList.splice(index, 1);
-    this.session.setImages(this.imageList);
-    setTimeout(() => this.updateSwiper(), 0);
-  }
+  remove(index: number, event: MouseEvent): void {
+  event.stopPropagation();
+  event.preventDefault();
+  this.imageList.splice(index, 1);
+  this.session.setImages(this.imageList);
+  setTimeout(() => this.updateSwiper(), 0);
+}
 
   trackByFn(index: number, item: Apod): string {
     return item.url;
