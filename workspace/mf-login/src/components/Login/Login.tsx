@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import './Login.css';
-import { MOCK_PASSWORD, MOCK_USER } from '../../constants';
+import { LOGIN_CONSTANTS } from '../../constants';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -28,8 +28,8 @@ const Login: React.FC = () => {
     try {
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      if (username === MOCK_USER && password === MOCK_PASSWORD) {
-        const mockToken = 'mock-auth-token-12345';
+      if (username === LOGIN_CONSTANTS.MOCK_USER && password === LOGIN_CONSTANTS.MOCK_PASSWORD) {
+        const mockToken = LOGIN_CONSTANTS.MOCK_TOKEN;
         sessionStorage.setItem('authToken', mockToken);
 
         const loginSuccessEvent = new CustomEvent('loginSuccess', {
